@@ -1,16 +1,17 @@
+<%= form_for @gallery do |form| %>
+  <%= render "error_messages", target: @gallery %>
 
-<%= form_for @gallery, url: "/galleries/#{@gallery.id}" do |form| %>
-<div>
-<%= form.label :name %>
-<%= form.text_field :name %>
-</div>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
 
-<div>
-	<%= form.label :description %>
-	<%= form.text_area :description %>
-</div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
 
-<div>
-	<%= form.submit "Edit gallery" %>
-	</div>
+  <div>
+    <%= form.submit "Edit gallery" %>
+    </div>
 <% end %>

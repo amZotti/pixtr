@@ -4,33 +4,35 @@ class GalleriesController < ApplicationController
   end
 
   def show
-  	@gallery = Gallery.find(params[:id])
+    @gallery = Gallery.find(params[:id])
   end
 
   def new
-  	@gallery = Gallery.new
+    @gallery = Gallery.new
   end
 
   def create
-  	gallery = Gallery.new(gallery_params)
+    gallery = Gallery.new(gallery_params)
     if gallery.save
-  	redirect_to "/galleries/#{gallery.id}"
-  else
-    @gallery = gallery
-    render :new 
-  end
+      redirect_to "/galleries/#{gallery.id}"
+    else
+      @gallery = gallery
+      render :new 
+    end
 
   end
 
   def edit
-  @gallery = Gallery.find(params[:id])
+    @gallery = Gallery.find(params[:id])
   end
 
   def update
-  gallery = Gallery.find(params[:id])
-  gallery.update(gallery_params)
-
-  	redirect_to "/galleries/#{gallery.id}"
+    @gallery = Gallery.find(params[:id])
+    if @gallery.update(gallery_params)
+      redirect_to @gallery
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -42,13 +44,13 @@ class GalleriesController < ApplicationController
   private
 
   def gallery_params
-  params.require(:gallery).permit(
-  	#Must use params.require (STRONG PARAMS=>SANITIZATION) to prevent people h4xing our forms. IE adding an admin field 
+    params.require(:gallery).permit(
+      #Must use params.require (STRONG PARAMS=>SANITIZATION) to prevent people h4xing our forms. IE adding an admin field 
       :name,
       :description,
       #Extra comma included for git commit messages clarity
 
-  	)
+    )
   end
 
 end

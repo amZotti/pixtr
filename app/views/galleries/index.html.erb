@@ -5,6 +5,6 @@
 
 <ul>
   <% @galleries.each do |gallery| %>
-    <li><%= link_to gallery.name, "gallery" %></li>
+    <li><%= link_to gallery.name, gallery %></li>
   <% end %>
 </ul>

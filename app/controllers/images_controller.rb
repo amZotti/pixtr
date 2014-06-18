@@ -1,39 +1,44 @@
 class ImagesController < ApplicationController
-	def new
-		@gallery = Gallery.find(params[:gallery_id])
-		@image = Image.new
-	end
+  def new
+    @gallery = Gallery.find(params[:gallery_id])
+    @image = Image.new
+  end
 
-	def create
-		#When we create we redirect; do not render pages
-		image = Image.create(image_params)
-		gallery = Gallery.find(params[:gallery_id])
+  def create
+    #When we create we redirect; do not render pages
+    @image = Image.create(image_params)
+    @gallery = Gallery.find(params[:gallery_id])
+    if @image.save 
+      redirect_to @gallery
+    else
+      render :new
+    end
+  end
 
-		redirect_to "/galleries/#{gallery.id}"
-	end
-
-	def edit
+  def edit
     @image = Image.find(params[:id])
     @gallery = Gallery.find(params[:gallery_id])
+  end
 
+  def update
+    @gallery = Gallery.find(params[:gallery_id])
+    @image = @gallery.images.find(params[:id])
 
-	end
+    if  @image.update(image_params)
+    redirect_to @gallery
+    else
+      render :edit
+    end
+  
 
-	def update
-		image = Image.find(params[:id])
-		image.update(image_params)
-		gallery = Gallery.find(params[:gallery_id])
+  end
 
-		redirect_to "/galleries/#{gallery.id}"
-
-	end
-
-	private
-	def image_params
-		#image is outterkey
-		#permit(url) is the inner key (aka nested key)
-		 # params.require(:image).permit(:url)=== params[:image][:url]
-		params.require(:image).permit(:url).merge(gallery_id: params[:gallery_id])
-	end
+  private
+  def image_params
+    #image is outterkey
+    #permit(url) is the inner key (aka nested key)
+    # params.require(:image).permit(:url)=== params[:image][:url]
+    params.require(:image).permit(:url).merge(gallery_id: params[:gallery_id])
+  end
 
 end
