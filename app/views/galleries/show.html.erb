@@ -1,6 +1,6 @@
 <h2><%= @gallery.name %></h2>
 <p><%= @gallery.description %></p>
-
+<p><%= @gallery.description %></p>
 
 <% @gallery.images.each do |image| %>
 <%= link_to image_tag(image.url), "/galleries/#{@gallery.id}/images/#{image.id}/edit" %>
