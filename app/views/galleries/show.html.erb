@@ -6,6 +6,8 @@
 <%= link_to image_tag(image.url), "/galleries/#{@gallery.id}/images/#{image.id}/edit" %>
 <% end %>
 
+<% if current_user  == @gallery.user %>
 <%= link_to "Edit gallery: #{@gallery.name}", "/galleries/#{@gallery.id}/edit" %>
 <%= link_to "Destroy!", "/galleries/#{@gallery.id}", method: :delete %>
 <%= link_to "Add an image", "/galleries/#{@gallery.id}/images/new" %>
+<% end %>
