@@ -1,6 +1,5 @@
-<%= form_for [@gallery,@image] do |form| %>
-<%= form.label :url, "URL"%>
-<%= form.text_field :url %>
-<%= form.submit "Edit URL" %>
+<%= form_for @image do |form| %>
+  <%= render "error_messages", target: @image %>
+<%= render "form", form: form %>
+<%= form.submit "Update image" %>
 <% end %>
-<%= image_tag(@image.url) %>

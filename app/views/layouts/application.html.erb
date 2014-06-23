@@ -11,12 +11,13 @@
 <h1>Pixtr</h1>
 
 <% if !signed_in? %>
+<% #unless controller_name == "users" && action_name == "new" %>
   <%= link_to "sign up", [:new, :user] %>
   <%= link_to "sign in", [:new, :session]  %>
 <% else %>
   <%= button_to "Sign out", :session, method: :delete %>
+<%# end %>
 <% end %>
-
 <%= yield %>
 
 </body>
