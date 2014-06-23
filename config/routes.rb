@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :galleries, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :images, only: [:new, :create]
   end
-resources :images, only: [:edit, :update]
+resources :images, only: [:show, :edit, :update]
 end
 

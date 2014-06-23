@@ -3,12 +3,18 @@
 <p><%= @gallery.description %></p>
 
 <% @gallery.images.each do |image| %>
-  <%= link_to image_tag(image.url), [:edit, image] %>
-<% end %>
+  <%= link_to image do %>
+    <%= image_tag(image.url) %>
+  <% end %>
 
+  <%= link_to "Edit this image", [:edit, image] %>
+  Created <%= time_ago_in_words image.created_at %> ago
+<%end%>
+
+#not complete
 <% if current_user.id  == @gallery.user_id %>
 
   <%= link_to "Edit gallery", [:edit, @gallery] %>
   <%= link_to "Destroy!", @gallery, method: :delete %>
-  <%= link_to "Add an image", [:new, @gallery, :image %>
+  <%= link_to "Add an image", [:new, @gallery, :image] %>
 <% end %>
