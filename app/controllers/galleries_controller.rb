@@ -19,14 +19,15 @@ class GalleriesController < ApplicationController
     if @gallery.save
       redirect_to @gallery
     else
-      @gallery = @gallery
-      render :new 
+      render :new
     end
   end
 
   def edit
-   # @gallery = Gallery.find(params[:id])
-    @gallery = current_user.galleries.find(params[:id])
+    # @gallery = Gallery.find(params[:id])
+    the_user = current_user
+    galleries_owned_by_them = the_user.galleries
+    @gallery = galleries_owned_by_them.find(params[:id])
   end
 
   def update
@@ -41,7 +42,7 @@ class GalleriesController < ApplicationController
   def destroy
     gallery = current_user.galleries.find(params[:id])
     gallery.destroy
-    redirect_to "/"
+    redirect_to root_path
   end
 
   private
@@ -50,7 +51,6 @@ class GalleriesController < ApplicationController
     params.require(:gallery).permit(
       :name,
       :description,
-      #Extra comma included for git commit messages clarity
     )
   end
 end

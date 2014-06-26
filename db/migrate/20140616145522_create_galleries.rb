@@ -3,6 +3,7 @@ class CreateGalleries < ActiveRecord::Migration
     create_table :galleries do |t|
       t.string :name, null: false
       t.text :description
+
       t.timestamps
     end
   end

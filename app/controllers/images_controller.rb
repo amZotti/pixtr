@@ -1,20 +1,21 @@
 class ImagesController < ApplicationController
- def show
-   @image = Image.find(params[:id])
- end
+  def show
+    @image = Image.find(params[:id])
+    @comment = Comment.new
+    @comments = @image.comments.recent
+    @groups = Group.all
+  end
 
   def new
-    @gallery = Gallery.find(params[:gallery_id])
+    @gallery = current_user.galleries.find(params[:gallery_id])
     @image = Image.new
   end
 
   def create
-    #When we create we redirect; do not render pages
     @gallery = current_user.galleries.find(params[:gallery_id])
-
     @image = @gallery.images.new(image_params)
 
-    if @image.save 
+    if @image.save
       redirect_to @gallery
     else
       render :new
@@ -28,18 +29,19 @@ class ImagesController < ApplicationController
   def update
     @image = current_user.images.find(params[:id])
 
-    if  @image.update(image_params)
-      redirect_to @image.gallery
+    if @image.update(image_params)
+      redirect_to @image
     else
       render :edit
     end
-
-
   end
 
   private
-  def image_params
-    params.require(:image).permit(:url)
-  end
 
+  def image_params
+    params.require(:image).permit(
+     :url,
+     group_ids: [],
+    )
+  end
 end

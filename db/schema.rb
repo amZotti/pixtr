@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619200851) do
+ActiveRecord::Schema.define(version: 20140625204257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: true do |t|
+    t.text     "body",       null: false
+    t.integer  "user_id",    null: false
+    t.integer  "image_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["image_id"], name: "index_comments_on_image_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "galleries", force: true do |t|
     t.string   "name",        null: false
@@ -26,6 +37,33 @@ ActiveRecord::Schema.define(version: 20140619200851) do
 
   add_index "galleries", ["user_id"], name: "index_galleries_on_user_id", using: :btree
 
+  create_table "group_images", force: true do |t|
+    t.integer  "image_id",   null: false
+    t.integer  "group_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_images", ["image_id", "group_id"], name: "index_group_images_on_image_id_and_group_id", unique: true, using: :btree
+
+  create_table "group_memberships", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "group_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "group_memberships", ["user_id", "group_id"], name: "index_group_memberships_on_user_id_and_group_id", unique: true, using: :btree
+
+  create_table "groups", force: true do |t|
+    t.string   "name",        null: false
+    t.text     "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "groups", ["name"], name: "index_groups_on_name", unique: true, using: :btree
+
   create_table "images", force: true do |t|
     t.integer  "gallery_id"
     t.string   "url"
@@ -34,6 +72,17 @@ ActiveRecord::Schema.define(version: 20140619200851) do
   end
 
   add_index "images", ["gallery_id"], name: "index_images_on_gallery_id", using: :btree
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "image_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["image_id"], name: "index_likes_on_image_id", using: :btree
+  add_index "likes", ["user_id", "image_id"], name: "index_likes_on_user_id_and_image_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false

@@ -1,17 +1,9 @@
 <%= form_for @gallery do |form| %>
   <%= render "error_messages", target: @gallery %>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <%= render "form", form: form %>
 
   <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.submit "Update gallery" %>
   </div>
-
-  <div>
-    <%= form.submit "Edit gallery" %>
-    </div>
 <% end %>

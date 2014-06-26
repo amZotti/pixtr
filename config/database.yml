@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-# production:
-#   <<: *default
-#   database: pixtr_production
-#   username: pixtr
-#   password: <%= ENV['PIXTR_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: pixtr_production
+  username: pixtr
+  password: <%= ENV['PIXTR_DATABASE_PASSWORD'] %>
