@@ -12,6 +12,7 @@
 <% end %>
 
 <div>
+  <p>Likes: <%= @image.likes.count %></p>
 <% if current_user.like?(@image) %>
   <%= button_to "Unlike image", [@image, :like], method: "delete" %>
 <% else %>
