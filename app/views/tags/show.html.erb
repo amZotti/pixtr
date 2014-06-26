@@ -1,0 +1,6 @@
+<div>
+  <h2>Image(s) tagged as:"<%=@tag.name%>"</h2>
+  <%@tag.images.each do |image| %>
+    <img src=<%=image.url%>>
+  <% end %>
+</div>
