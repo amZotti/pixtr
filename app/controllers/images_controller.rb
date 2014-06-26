@@ -4,6 +4,7 @@ class ImagesController < ApplicationController
     @comment = Comment.new
     @comments = @image.comments.recent
     @groups = Group.all
+    @tags = Tag.all
   end
 
   def new
@@ -24,6 +25,7 @@ class ImagesController < ApplicationController
 
   def edit
     @image = current_user.images.find(params[:id])
+    @tags = Tag.all
   end
 
   def update

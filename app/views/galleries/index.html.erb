@@ -7,3 +7,15 @@
     <li><%= link_to gallery.name, gallery %></li>
   <% end %>
 </ul>
+
+
+
+<h2>Tags</h2>
+
+<%= link_to "Create a tag", "/tags/new" %>
+
+<ul>
+  <% @tags.each do |tag| %>
+    <li><%= link_to tag.name%></li>
+  <% end %>
+</ul>

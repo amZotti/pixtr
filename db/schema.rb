@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625204257) do
+ActiveRecord::Schema.define(version: 20140626195426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20140625204257) do
 
   add_index "groups", ["name"], name: "index_groups_on_name", unique: true, using: :btree
 
+  create_table "image_tag_relationships", force: true do |t|
+    t.integer  "image_id",   null: false
+    t.integer  "tag_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "image_tag_relationships", ["image_id", "tag_id"], name: "index_image_tag_relationships_on_image_id_and_tag_id", unique: true, using: :btree
+
   create_table "images", force: true do |t|
     t.integer  "gallery_id"
     t.string   "url"
@@ -83,6 +92,14 @@ ActiveRecord::Schema.define(version: 20140625204257) do
   add_index "likes", ["image_id"], name: "index_likes_on_image_id", using: :btree
   add_index "likes", ["user_id", "image_id"], name: "index_likes_on_user_id_and_image_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",           null: false

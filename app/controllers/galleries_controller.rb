@@ -1,6 +1,7 @@
 class GalleriesController < ApplicationController
   def index
     @galleries = Gallery.all
+    @tags = Tag.all
   end
 
   def show
