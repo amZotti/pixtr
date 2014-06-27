@@ -1,10 +1,15 @@
-<%= form_for @image do |form| %>
-  <%= render "error_messages", target: @image %>
+<div>
+  <%= form_for @image do |form| %>
+    <%= render "error_messages", target: @image %>
+    <%= render "form", form: form %>
+    <%= form.submit "Update image" %>
+  <% end %>
+</div>
 
-  <%= render "form", form: form %>
-  <div>
-    <%= form.label "Tags" %>
-  <%= form.collection_check_boxes :tag_ids, @tags, :id, :name %>
-  </div>
-  <%= form.submit "Update image" %>
-<% end %>
+<div>
+  <%= form_for [@image,@tag] do |form| %>
+    <%= form.label "Add new tags seperated by commas" %>
+    <%= form.text_field :name %>
+    <%= form.submit%>
+  <% end %>
+</div>

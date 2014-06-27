@@ -1,15 +1,19 @@
 class TagsController < ApplicationController
-  def new
-    @tag = Tag.new()
-  end
   def create
-    @tag = Tag.create(tag_params) 
+    image_id = Image.find(params[:image_id]).id
+    tag_names =  (tag_params['name']).split(",")
+    tag_names.each do |text|
+      new_tag = Tag.create(name:text)
+      ImageTagRelationship.create(image_id:image_id, tag_id:new_tag.id)
+    end
     redirect_to "/"
   end
 
   def show
-  @tag = Tag.find(params[:id])
+    @tag = Tag.find(params[:id])
   end
+
+
 
 
   private

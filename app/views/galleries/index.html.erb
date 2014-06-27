@@ -11,11 +11,9 @@
 
 
 <h2>Tags</h2>
-
-<%= link_to "Create a tag", "/tags/new" %>
-
-<ul>
-  <% @tags.each do |tag| %>
-    <li><%= link_to tag.name, tag%></li>
-  <% end %>
-</ul>
+<p><%= flash[:error] %><p>
+<%= form_for @search do |form| %>
+  <%= form.label "Search for a tag" %>
+  <%= form.text_field :query %>
+  <%= form.submit %>
+<% end %>

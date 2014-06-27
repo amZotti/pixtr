@@ -25,7 +25,7 @@ class ImagesController < ApplicationController
 
   def edit
     @image = current_user.images.find(params[:id])
-    @tags = Tag.all
+    @tag = Tag.new
   end
 
   def update

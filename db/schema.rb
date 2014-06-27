@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626195426) do
+ActiveRecord::Schema.define(version: 20140627141413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,10 @@ ActiveRecord::Schema.define(version: 20140626195426) do
   add_index "likes", ["image_id"], name: "index_likes_on_image_id", using: :btree
   add_index "likes", ["user_id", "image_id"], name: "index_likes_on_user_id_and_image_id", unique: true, using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "searches", force: true do |t|
+    t.string "query"
+  end
 
   create_table "tags", force: true do |t|
     t.string   "name",       null: false
