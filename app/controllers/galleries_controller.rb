@@ -1,7 +1,6 @@
 class GalleriesController < ApplicationController
   def index
     @galleries = Gallery.all
-    @search = Search.new
   end
 
   def show

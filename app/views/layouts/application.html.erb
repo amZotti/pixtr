@@ -10,11 +10,11 @@
     <header>
       <h1>Pixtr</h1>
       <% if signed_in? %>
+        <% @search = Search.new %>
         <%= form_for @search do |form| %>
           <%= form.text_field :query, placeholder: "Search for a Picture" %>
         <% end %>
         <%= button_to "Sign out", :session, method: :delete, id: "signout" %>
-
       <% else %>
         <% unless controller_name == "users" && action_name == "new" %>
           <%= link_to "Sign up", [:new, :user] %>
