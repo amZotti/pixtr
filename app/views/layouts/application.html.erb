@@ -16,9 +16,9 @@
         <%= button_to "Sign out", :session, method: :delete, id: "signout" %>
       <% else %>
         <% unless controller_name == "users" && action_name == "new" %>
-          <%= link_to "Sign up", [:new, :user] %>
+          <%= link_to "Sign up", [:new, :user], id: "login" %>
         <% end %>
-        <%= link_to "Sign in", [:new, :session] %>
+        <%= link_to "Sign in", [:new, :session], id: "login" %>
       <% end %>
     </header>
     <p><%= flash[:error] %><p>

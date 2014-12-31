@@ -109,3 +109,8 @@ main {
   right: 85px;
   display: inline-block;
 }
+
+#login {
+  color: white;
+  text-decoration: none;
+}
