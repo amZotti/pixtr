@@ -1,5 +1,6 @@
 body {
   background-color: rgb(238, 238, 238);
+  font-family: "Comic Sans MS";
 }
 
 main {
@@ -37,4 +38,42 @@ h1 {
   position: absolute;
   right: 76px;
   top: 10px;
+}
+
+main {
+  position: relative;
+  top: 100px;
+  text-align:center;
+}
+
+#create_gallery {
+  background-color: rgb(96, 201, 231);
+  color: white;
+  width: 20%;
+  height: 50%;
+  font-size: 250%;
+}
+
+#create_group {
+  background-color: rgb(141, 197, 62);
+  color: white;
+  width: 20%;
+  height: 50%;
+  font-size: 250%;
+}
+
+#galleries_tagline {
+  position: relative;
+  bottom: 170px;
+  right: 80px;
+  color: white;
+  font-size: 20px;
+}
+
+#groups_tagline {
+  position: relative;
+  bottom: 220px;
+  left: 160px;
+  color: white;
+  font-size: 20px;
 }
