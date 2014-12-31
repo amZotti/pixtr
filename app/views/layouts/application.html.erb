@@ -10,7 +10,6 @@
     <header>
       <h1><a href="/">Pixtr</a></h1>
       <% if signed_in? %>
-        <% @search = Search.new %>
         <%= form_for @search do |form| %>
           <%= form.text_field :query, placeholder: "Search for a Picture" %>
         <% end %>
