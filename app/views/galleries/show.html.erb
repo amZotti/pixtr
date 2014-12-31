@@ -4,7 +4,7 @@
 
 <% @gallery.images.each do |image| %>
   <%= link_to image do %>
-    <%= image_tag image.url %>
+    <%= image_tag image.url, class: "gallery_image" %>
   <% end %>
 
   <%= link_to "Edit this image", [:edit, image] %>
