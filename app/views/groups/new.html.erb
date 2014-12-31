@@ -1,10 +1,15 @@
+<h2>Create a New Group</h2>
 <%= form_for @group do |form| %>
   <%= render "error_messages", target: @group %>
+  <div id="group_div">
   <%= form.label :name %>
   <%= form.text_field :name %>
+  </div>
 
+  <div>
   <%= form.label :description %>
   <%= form.text_field :description %>
+  </div>
 
-  <%= form.submit "Create new group" %>
+  <%= form.submit "Create" %>
 <% end %>

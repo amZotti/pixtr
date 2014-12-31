@@ -1,18 +1,22 @@
 <h2>Choose Your Creation</h2>
-<% link_to "new gallery", "/galleries/new" %>
-<% link_to "new group", [:new, :group] %> 
-<%= button_tag "Galleries", id: "create_gallery" %>
-<%= button_tag "Groups", id: "create_group" %>
+<%= link_to '<button type="button" id="create_gallery">Galleries</button>'.html_safe, new_gallery_path %>
+<%= link_to '<button type="button" id="create_group">Groups</button>'.html_safe, new_group_path %>
 <p class="tagline" id="galleries_tagline">Show some pix</p>
 <p class="tagline" id="groups_tagline">Share with friends</p>
 
-<h3>Galleries</h3>
-<ul>
+<div id="all_galleries">
+<h3>Current Galleries</h3>
   <% @galleries.each do |gallery| %>
-    <li><%= link_to gallery.name, gallery %></li>
+    <p><%= link_to gallery.name, gallery %></p>
   <% end %>
-</ul>
+</div>
 
+<div id="all_groups">
+  <h3>Current Groups</h3>
+  <% @groups.each do |group| %>
+    <p><%= link_to group.name, group %></p>
+  <% end %>
+</div>
 
 
 
