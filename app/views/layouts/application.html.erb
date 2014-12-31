@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Pixtr</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Pixtr</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <h1>Pixtr</h1>
+      <% if signed_in? %>
+        <%= form_for @search do |form| %>
+          <%= form.text_field :query, placeholder: "Search for a Picture" %>
+        <% end %>
+        <%= button_to "Sign out", :session, method: :delete, id: "signout" %>
 
-<h1>Pixtr</h1>
-<% if signed_in? %>
-  <%= button_to "Sign out", :session, method: :delete %>
-  <%= link_to "Create a new group", [:new, :group] %>
-<% else %>
-  <% unless controller_name == "users" && action_name == "new" %>
-    <%= link_to "Sign up", [:new, :user] %>
-  <% end %>
-  <%= link_to "Sign in", [:new, :session] %>
-<% end %>
-
-<%= yield %>
-
-</body>
+      <% else %>
+        <% unless controller_name == "users" && action_name == "new" %>
+          <%= link_to "Sign up", [:new, :user] %>
+        <% end %>
+        <%= link_to "Sign in", [:new, :session] %>
+      <% end %>
+    </header>
+    <p><%= flash[:error] %><p>
+    <main>
+    <%= yield %>
+    </main>
+  </body>
 </html>

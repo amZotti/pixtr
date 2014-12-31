@@ -1,0 +1,40 @@
+body {
+  background-color: rgb(238, 238, 238);
+}
+
+main {
+  width: 80%;
+  margin: 0 auto 0 auto;
+  height: 700px;
+} 
+
+header {
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+}
+
+h1 {
+  color: #2F96E8;
+  display: inline-block;
+}
+
+#search_query {
+  height: 18px;
+  width: 200px;
+}
+
+#new_search {
+  position: absolute;
+  right: 80px;
+  top: 30px;
+  display: inline-block;
+}
+
+#signout {
+  position: absolute;
+  right: 76px;
+  top: 10px;
+}
